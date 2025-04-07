@@ -3,10 +3,6 @@ from odoo import models, fields, api
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    tarimas = fields.Char(string="Tarimas")
-    tarimas_iguales = fields.Boolean(string="Tarimas Iguales", default=True)
-    detalles_tarimas = fields.One2many('mrp.detalles.tarimas', 'mrp_id', string="Detalles Tarimas")
-
     @api.model
     def create(self, vals):
         origin = vals.get('origin')
