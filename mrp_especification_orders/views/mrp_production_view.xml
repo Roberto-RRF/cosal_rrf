@@ -1,0 +1,51 @@
+<odoo>
+
+    <record id="view_mrp_production_form_inherit" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.especificacion</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='product_comments']" position="after">
+                <page string="Especificación">
+                    <group>
+                        <group>
+                            <field name="is_roll" invisible="1"/>
+                            <!-- Variables Compartidas -->
+                            <field name="to_cut_rolls" readonly="0"/>
+                            <field name="sale_type" readonly="1"/>
+                            <field name="tarimas"/>
+                            <field name="tarimas_iguales"/>
+                            <field name="detalles_tarimas" invisible="tarimas_iguales == True" widget="many2many_tags" domain="[('id', '=', False)]"/>
+                            <field name="to_cut"/>
+                            <field name="refil" readonly="1"/>
+
+                            <!-- Variables de Rollos -->
+                            
+                            <!-- Variables de Hojas -->
+                            <field name="millares_vendidos" invisible="is_roll" readonly="1"/>
+                            <field name="medida" invisible="is_roll" readonly="1" />
+                            <field name="kilos" invisible="is_roll" readonly="1"/>
+                            <field name="destino" invisible="is_roll" readonly="1"/>
+                            <field name="empacar_en" invisible="is_roll"/>
+                            <field name="hojas_por_empaque" invisible="is_roll"/>
+                            
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//button[@name='action_open_label_type']" position="after">
+                <button 
+                    name="action_open_work_sheet_wizard"
+                    type="object"
+                    string="Imprimir Hoja de Trabajo"
+                />
+            </xpath>
+
+            <xpath expr="//field[@name='move_raw_ids']/tree/field[@name='product_id']" position="after">
+                <field name="peso_promedio" />
+                <field name="rollos_promedio" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
