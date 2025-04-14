@@ -59,7 +59,10 @@ class MrpProductionWizard(models.TransientModel):
         print("To cut: "+str(to_cut))
         print("Resultant Sizes: "+str(resultant_sizes[0]))
         print("Peso Promedio: "+str(peso_promedio))
-        peso = round(peso_promedio/(to_cut*resultant_sizes[0]),2)
+        peso = round(resultant_sizes[0]*100/peso_promedio,2)
+        print("\n\n\n")
+        print(resultant_sizes)
+        print("\n\n\n")
         production_lines = []
         for i in range(to_cut):
             # Create the base production line
@@ -76,17 +79,17 @@ class MrpProductionWizard(models.TransientModel):
             char_pos = 65
             for i, size in enumerate(resultant_sizes):
                 div = int(source_size // size)
-                for j in range(0,div):
-                    detail = {
-                        'pos': chr(char_pos + j),
-                        'medida': f'{sum} - {size + sum}',
-                        'diferencia': f'{size}',
-                        'medir_en': 'cm',
-                        'kilos': peso,
-                        'destino': 'Cliente',
-                    }
-                    line_details.append((0, 0, detail))
-                    sum += size
+                # for j in range(0,div):
+                detail = {
+                    'pos': chr(char_pos + i),
+                    'medida': f'{sum} - {size + sum}',
+                    'diferencia': f'{size}',
+                    'medir_en': 'cm',
+                    'kilos': peso,
+                    'destino': 'Cliente',
+                }
+                line_details.append((0, 0, detail))
+                sum += size
             if source_size != sum:
                 detail = {
                     'pos': chr(char_pos + len(resultant_sizes)),

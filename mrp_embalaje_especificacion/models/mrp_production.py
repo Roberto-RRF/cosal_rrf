@@ -12,10 +12,13 @@ class MrpProduction(models.Model):
         if origin:
             sale_order = self.env['sale.order'].search([('name', '=', origin)], limit=1)
             if sale_order:
+                try:
                 # Get all unique product_packaging_id values, ignoring empty ones
-                packaging_records = sale_order.order_line.mapped('product_packaging_id').filtered(lambda p: p.id)
-                unique_packaging_ids = list(set(packaging_records.ids))
-                vals['cantidad_embalaje'] = packaging_records[0].qty
+                    packaging_records = sale_order.order_line.mapped('product_packaging_id').filtered(lambda p: p.id)
+                    unique_packaging_ids = list(set(packaging_records.ids))
+                    vals['cantidad_embalaje'] = packaging_records[0].qty
+                except Exception as e:
+                    pass
                 if len(unique_packaging_ids) == 1 and packaging_records:
                     # Case: All packaging IDs are the same
                     total_qty = sum(sale_order.order_line.mapped('product_uom_qty'))

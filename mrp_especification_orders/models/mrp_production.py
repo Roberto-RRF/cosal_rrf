@@ -50,8 +50,7 @@ class MrpProduction(models.Model):
         source_product = source_products[:1]
 
         centro = resultant_products[0].product_template_attribute_value_ids.filtered(lambda a: a.attribute_id.name == "Centro").name
-        diametro = resultant_products[0].product_template_attribute_value_ids.filtered(lambda a: a.attribute_id.name == "Diametro").name
-
+        diametro = resultant_products[0].product_template_attribute_value_ids.filtered(lambda a: a.attribute_id.name == "Diámetro").name
         source_size = source_product.product_template_attribute_value_ids.filtered(lambda a: a.attribute_id.name == "Ancho cm").name
         resultant_sizes = []
         for product in resultant_products:
