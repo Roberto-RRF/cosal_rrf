@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_stock_lot_inherit" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="es_rollo" invisible="1" />
+                <field name="fecha_de_fabricacion"/>
+                <field name="proveedor_id"/>
+                <field name="metro_lineal_original" invisible="not es_rollo"/>
+                <field name="factor" invisible="not es_rollo"/>
+                <field name="metro_lineal_remanente" invisible="not es_rollo"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

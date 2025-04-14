@@ -1,0 +1,14 @@
+<odoo>
+    <record id="view_stock_move_line_inherit" model="ir.ui.view">
+        <field name="name">stock.move.line.inherit</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_name']" position="after">
+                <field name="ref" />
+                <field name="fecha_de_fabricacion" />
+                <field name="metro_lineal_original" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

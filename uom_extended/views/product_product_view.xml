@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_reporte_existencias_inherit" model="ir.ui.view">
+        <field name="name">product.product.existencias.report.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_product_stock_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_available']" position="after">
+                <field name="millares_rollos_a_la_mano"  optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='free_qty']" position="after">
+                <field name="millares_rollos_disponible" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
